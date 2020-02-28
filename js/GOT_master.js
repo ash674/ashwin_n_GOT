@@ -24,12 +24,12 @@ function hideLightBox() {
 function play() {
   houseVdo.play();
   if (paused) {
-    
+
   }
 }
 
 function pause() {
-  houseVdo.pause();
+  houseVdo.pause(); 
   paused = true;
 }
 
