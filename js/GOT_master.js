@@ -11,9 +11,14 @@ let sigilButtons = document.querySelectorAll(".sigilContainer"),
 let paused = false;
 
 function showLightBox() {
-  //debugger;
 
+  let houseName = this.className.split(" ")[1];
+  let newSource = houseName.charAt(0).toUpperCase() + houseName.slice(1);
+  let targetSource = `video/House-${newSource}.mp4`;
+debugger;
   lightbox.classList.add("show-lightbox");
+  houseVdo.src = targetSource;
+    houseVdo.load();
     houseVdo.play();
 }
 function hideLightBox() {
@@ -21,15 +26,13 @@ function hideLightBox() {
     houseVdo.pause();
       houseVdo.currentTime = 0;
 }
+
 function play() {
   houseVdo.play();
-  if (paused) {
-
-  }
 }
 
 function pause() {
-  houseVdo.pause(); 
+  houseVdo.pause();
   paused = true;
 }
 
@@ -39,9 +42,9 @@ houseVdo.play();
 
 }
 
-sigilButtons.forEach(button => button.addEventListener("click", showLightBox));
-closeButton.addEventListener("click", hideLightBox);
-playbutton.addEventListener("click", play);
-pausebutton.addEventListener("click", pause);
-rewindbutton.addEventListener("click", rewind);
+ sigilButtons.forEach(button => button.addEventListener("click", showLightBox));
+ closeButton.addEventListener("click", hideLightBox);
+ playbutton.addEventListener("click", play);
+ pausebutton.addEventListener("click", pause);
+ rewindbutton.addEventListener("click", rewind);
 })();
