@@ -6,14 +6,20 @@ let sigilButtons = document.querySelectorAll(".sigilContainer"),
   houseVdo = document.querySelector("video")
   playbutton = document.querySelector(".play-button"),
   pausebutton = document.querySelector(".pause-button"),
-  rewindbutton = document.querySelector(".rewind-button");
+  rewindbutton = document.querySelector(".rewind-button"),
+  imageContainer = document.querySelector("#houseImages");
 
 let paused = false;
 
 function showLightBox() {
-  //debugger;
 
+  let houseName = this.className.split(" ")[1];
+  let newSource = houseName.charAt(0).toUpperCase() + houseName.slice(1);
+  let targetSource = `video/House-${newSource}.mp4`;
+//debugger;
   lightbox.classList.add("show-lightbox");
+  houseVdo.src = targetSource;
+    houseVdo.load();
     houseVdo.play();
 }
 function hideLightBox() {
@@ -21,15 +27,13 @@ function hideLightBox() {
     houseVdo.pause();
       houseVdo.currentTime = 0;
 }
+
 function play() {
   houseVdo.play();
-  if (paused) {
-
-  }
 }
 
 function pause() {
-  houseVdo.pause(); 
+  houseVdo.pause();
   paused = true;
 }
 
@@ -39,9 +43,17 @@ houseVdo.play();
 
 }
 
-sigilButtons.forEach(button => button.addEventListener("click", showLightBox));
-closeButton.addEventListener("click", hideLightBox);
-playbutton.addEventListener("click", play);
-pausebutton.addEventListener("click", pause);
-rewindbutton.addEventListener("click", rewind);
+function animateBanners(){
+  let offsetWidth = 600;
+  let multiplier = this.dataset.offset;
+  let newPosition = offsetWidth * multiplier;
+  //debugger;
+  imageContainer.style.right = `${newPosition}px`;
+}
+
+ sigilButtons.forEach(button => button.addEventListener("click", animateBanners));
+ closeButton.addEventListener("click", hideLightBox);
+ playbutton.addEventListener("click", play);
+ pausebutton.addEventListener("click", pause);
+ rewindbutton.addEventListener("click", rewind);
 })();
